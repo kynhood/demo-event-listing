@@ -54,7 +54,7 @@ export default function TimePage() {
         const locationParam = selectedLocation?.city
           ? `&location_id=${selectedLocation.id}`
           : '';
-        const res = await fetch(`/api/slots?date_id=${selectedDate!.id}${locationParam}`);
+        const res = await fetch(`/api/slots?date_id=${selectedDate!.id}${locationParam}`, { cache: 'no-store' });
         if (!res.ok) throw new Error('Failed to fetch slots');
         const data = await res.json();
         setSlots(Array.isArray(data) ? data : data.slots ?? [data]);
